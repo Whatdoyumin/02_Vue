@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>배열 실습</title>
+    <style>
+      #list {
+        width: 600px;
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+      #list td,
+      #list th {
+        border: 1px solid black;
+        text-align: center;
+      }
+      #list > thead > tr {
+        color: yellow;
+        background-color: purple;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <table id="list">
+        <thead>
+          <tr>
+            <th>번호</th>
+            <th>이름</th>
+            <th>전화번호</th>
+          </tr>
+        </thead>
+        <tbody id="contacts">
+          <tr v-for="contact in contacts" :key="contact.number">
+            <td>{{contact.number}}</td>
+            <td>{{contact.name}}</td>
+            <td>{{contact.phoneNumber}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+      const vm = Vue.createApp({
+        name: 'App',
+        data() {
+          return {
+            contacts: [
+              {
+                number: 1011,
+                name: 'RM',
+                phoneNumber: '010-3456-8299',
+              },
+              {
+                number: 1012,
+                name: '정국',
+                phoneNumber: '010-3456-8298',
+              },
+              {
+                number: 1013,
+                name: '제이홉',
+                phoneNumber: '010-3456-8297',
+              },
+              {
+                number: 1014,
+                name: '슈가',
+                phoneNumber: '010-3456-8296',
+              },
+            ],
+          };
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>
