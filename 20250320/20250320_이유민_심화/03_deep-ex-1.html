@@ -63,7 +63,11 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(user) in users" :key="user.id">
+          <!-- watch를 쓸 경우 -->
+          <!-- <tr v-for="(user) in users" :key="user.id"> -->
+
+          <!-- computed를 쓸 경우 -->
+          <tr v-for="(user) in sortedUsers" :key="user.id">
             <td v-text="user.id"></td>
             <td v-text="user.name"></td>
             <td v-text="user.username"></td>
@@ -318,14 +322,39 @@
           };
         },
 
-        watch: {
-          sortValue(current) {
-            this.users.sort((a, b) => {
-              if (current === 'id') return a[current] - b[current];
-              else return a[current].localeCompare(b[current]);
+        // computed 사용 방법
+        computed: {
+          sortedUsers() {
+            const sortValue = this.sortValue;
+
+            /*
+            배열.sort((a, b) => {return 정수})
+            - 배열 요소 정렬 메서드
+            - 매개변수로 비교 함수를 전달할 수 있음
+            - 비교 함수는 두 개의 인자를 받아 비교
+              - 비교 함수가 양수를 반환하면 a가 b보다 뒤에 정렬됨 (b, a)
+              - 비교 함수가 0을 반환하면 a와 b의 순서는 변경되지 않음
+              - 비교 함수가 음수를 반환하면 a가 b보다 앞에 정렬됨
+            */
+            users.sort((u1, u2) => {
+              if (u1[sortValue] > u2[sortValue]) return 1;
+              else if (u1[sortValue] === u2[sortValue]) return 0;
+              else return -1;
             });
+
+            return users;
           },
         },
+
+        // watch 사용 방법
+        // watch: {
+        //   sortValue(current) {
+        //     this.users.sort((a, b) => {
+        //       if (current === 'id') return a[current] - b[current];
+        //       else return a[current].localeCompare(b[current]);
+        //     });
+        //   },
+        // },
       }).mount('#app');
     </script>
   </body>
