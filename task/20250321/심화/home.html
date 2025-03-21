@@ -15,14 +15,14 @@
     <style>
       .header {
         background-image: url('https://cdn.pixabay.com/photo/2018/01/12/14/24/night-3078326_1280.jpg');
-        background-repeat: no-repeat;
         background-position: center;
         object-fit: cover;
+        overflow: hidden;
       }
     </style>
   </head>
   <body>
-    <div class="container">
+    <div class="container-fluid">
       <div class="p-5 text-white text-start header">
         <h1>Fullstack Study</h1>
         <p>Vue + 자바 기반의 풀스택 기술을 배웁니다.</p>
@@ -32,7 +32,7 @@
       <nav
         class="navbar navbar-expand-sm bg-primary navbar-dark d-flex justify-content-between"
       >
-        <ul class="navbar-nav">
+        <ul class="navbar-nav d-flex align-items-center">
           <li class="nav-item">
             <a class="nav-link text-white" href="#"
               ><i class="fa-solid fa-house m-2"></i> Fullstack</a
@@ -60,7 +60,8 @@
           </li>
         </ul>
       </nav>
-
+    </div>
+    <div class="container">
       <!-- 글 목록 container -->
       <div class="mt-5 mb-5">
         <!-- table -->
