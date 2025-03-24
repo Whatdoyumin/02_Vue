@@ -54,10 +54,41 @@
 
     <script src="https://unpkg.com/vue"></script>
     <script>
+      const ts = new Date().getTime();
+
       const vm = Vue.createApp({
         name: 'App',
         data() {
-          return;
+          return {
+            todo: '',
+            todolist: [
+              { id: ts, todo: '자전거 타기', completed: false },
+              { id: ts, todo: '공원 산책', completed: false },
+              { id: ts, todo: '해장하기', completed: true },
+              { id: ts, todo: '정보처리기사 신청', completed: false },
+            ],
+          };
+        },
+
+        methods: {
+          addTodo() {
+            if (this.todo.length >= 2) {
+              this.todolist.push({
+                id: new Date().getTime(),
+                todo: this.todo,
+                completed: false,
+              });
+            }
+          },
+          deleteTodo(id) {
+            let index = this.todolist.findIndex((item) => id === item.id);
+            this.todolist.splice(index, 1);
+          },
+
+          toggleCompleted(id) {
+            let index = this.todolist.findIndex((item) => id === item.id);
+            this.todolist[index].completed = !this.todolist[index].completed;
+          },
         },
       }).mount('#app');
     </script>
