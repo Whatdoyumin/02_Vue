@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="stylesheet" href="bootstrap.min.css" />
+    <link rel="stylesheet" href="TodoList.style.css" />
+  </head>
+  <body>
+    <div id="app" class="container">
+      <div class="card card-body">
+        <div class="title">:: TodoList App</div>
+      </div>
+      <div class="card card-default card-borderless">
+        <div class="card-body">
+          <div class="row mb-3">
+            <div class="col">
+              <div class="input-group">
+                <input
+                  type="text"
+                  id="msg"
+                  class="form-control"
+                  name="msg"
+                  placeholder="할 일을 여기에 입력!"
+                  v-model.trim="todo"
+                  @keyup.enter="addTodo"
+                />
+                <span class="btn btn-primary input-group-addon" @click="addTodo"
+                  >추가</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-around">
+            <p>전체 todo 개수: <span v-text="totalCount"></span></p>
+            <p>
+              완료 todo 개수:
+              <span class="text-success" v-text="compleCount"></span>
+            </p>
+            <p>
+              미완료 todo 개수:
+              <span class="text-danger" v-text="incompleCount"></span>
+            </p>
+          </div>
+
+          <!-- 등록된 할 일 목록 -->
+          <div class="row">
+            <div class="col">
+              <ul class="list-group">
+                <li
+                  v-for="todoitem in sortedTodoList"
+                  :key="todoitem.id"
+                  class="list-group-item"
+                  :class="{'list-group-item-success': todoitem.completed}"
+                  @click="toggleCompleted(todoitem.id)"
+                >
+                  <span
+                    class="pointer"
+                    :class="{ 'todo-done': todoitem.completed }"
+                    >{{todoitem.todo}} {{todoitem.completed ? "(완료)" : ""}}
+                  </span>
+                  <span
+                    class="float-end badge bg-secondary pointer"
+                    @click.stop="deleteTodo(todoitem.id)"
+                    >삭제</span
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+      const ts = new Date().getTime();
+
+      const vm = Vue.createApp({
+        name: 'App',
+        data() {
+          return {
+            todo: '',
+            todolist: [],
+          };
+        },
+
+        methods: {
+          addTodo() {
+            if (this.todo.length >= 2) {
+              this.todolist.push({
+                id: new Date().getTime(),
+                todo: this.todo,
+                completed: false,
+              });
+            }
+            this.todo = '';
+          },
+          deleteTodo(id) {
+            let index = this.todolist.findIndex((item) => id === item.id);
+            this.todolist.splice(index, 1);
+          },
+
+          toggleCompleted(id) {
+            let index = this.todolist.findIndex((item) => id === item.id);
+            this.todolist[index].completed = !this.todolist[index].completed;
+          },
+        },
+
+        computed: {
+          sortedTodoList() {
+            const todo = this.todo;
+
+            const inCompleted = this.todolist.filter((item) => !item.completed);
+            inCompleted.sort((a, b) => {
+              if (a.todo > b.todo) return 1;
+              else if (a.todo === b.todo) return 0;
+              else return -1;
+            });
+
+            const completed = this.todolist.filter((item) => item.completed);
+            completed.sort((a, b) => {
+              if (a.todo > b.todo) return 1;
+              else if (a.todo === b.todo) return 0;
+              else return -1;
+            });
+
+            return [...inCompleted, ...completed];
+          },
+
+          // 전체 todo 개수
+          totalCount() {
+            return this.todolist.length;
+          },
+
+          // 완료 todo 개수
+          compleCount() {
+            const completed = this.todolist.filter((item) => item.completed);
+            return completed.length;
+          },
+
+          // 미완료 todo 개수
+          incompleCount() {
+            const inCompleted = this.todolist.filter((item) => !item.completed);
+            return inCompleted.length;
+          },
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>
