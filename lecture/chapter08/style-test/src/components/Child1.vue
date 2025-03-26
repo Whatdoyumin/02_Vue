@@ -1,14 +1,17 @@
 <template lang="">
-  <div class="child">
+  <div :class="$style.child">
     <h2>Child1</h2>
   </div>
 </template>
 <script>
 export default {
   name: 'Child1',
+  created() {
+    console.log(this.$style);
+  },
 };
 </script>
-<style scoped>
+<style module>
 .child {
   background-color: yellow;
   border: solid 1px black;
