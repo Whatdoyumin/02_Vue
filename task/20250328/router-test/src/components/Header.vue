@@ -1,7 +1,7 @@
 <template lang="">
   <nav class="navbar navbar-expand-md bg-dark navbar-dark mt-2">
     <span class="navbar-brand">이날치(LeeNalChi)</span>
-    <button class="navbar-toggle" type="button" @click="changeIsNavShow">
+    <button class="navbar-toggler" type="button" @click="changeIsNavShow">
       <span class="navbar-toggler-icon"></span>
     </button>
   </nav>
@@ -24,6 +24,8 @@
   </div>
 </template>
 <script>
+import { reactive, computed } from 'vue';
+
 export default {
   name: 'Header',
 
