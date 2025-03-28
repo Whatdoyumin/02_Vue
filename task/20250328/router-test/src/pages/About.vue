@@ -5,21 +5,26 @@
     <p>요청 경로: {{ route.fullPath }}</p>
   </div>
 </template>
-<script>
+<script setup>
 import { useRoute } from 'vue-router';
 
-export default {
-  name: 'About',
-  // created() {
-  //   console.log(this.$route);
-  // },
+// Composition API
+const route = useRoute();
+console.log(route.fullPath);
 
-  setup() {
-    const route = useRoute();
-    console.log(route.fullPath);
+// // options API
+// export default {
+//   name: 'About',
+//   // created() {
+//   //   console.log(this.$route);
+//   // },
 
-    return { route };
-  },
-};
+//   setup() {
+//     const route = useRoute();
+//     console.log(route.fullPath);
+
+//     return { route };
+//   },
+// };
 </script>
 <style lang=""></style>
