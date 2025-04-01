@@ -11,7 +11,7 @@
 </template>
 <script>
 export default {
-  name: 'Checkbox1',
+  name: 'Checkbox2',
   props: ['id', 'checked'],
 };
 </script>

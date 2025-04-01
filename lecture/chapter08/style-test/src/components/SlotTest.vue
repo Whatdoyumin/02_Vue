@@ -1,7 +1,7 @@
 <template lang="">
   <div>
     <h3>당신이 경험한 프로느엔드 기술은? (두 번째: slot사용(O))</h3>
-    <CheckBox1
+    <CheckBox2
       v-for="item in items"
       :key="item.id"
       :id="item.id"
@@ -13,15 +13,15 @@
         <i>{{ item.label }}</i>
       </span>
       <span v-else style="color: gray">{{ item.label }}</span>
-    </CheckBox1>
+    </CheckBox2>
   </div>
 </template>
 <script>
-import CheckBox1 from './CheckBox1.vue';
+import CheckBox2 from './CheckBox2.vue';
 
 export default {
-  name: 'NoSlotTest',
-  components: { CheckBox1 },
+  name: 'SlotTest',
+  components: { CheckBox2 },
   data() {
     return {
       items: [
