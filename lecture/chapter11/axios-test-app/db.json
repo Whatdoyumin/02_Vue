@@ -56,9 +56,13 @@
       "desc": "REST API를 공부해야 합니다.",
       "done": false,
       "id": "f6e3"
+    },
+    {
+      "id": "931d",
+      "todo": "윗몸일으키기 3세트",
+      "desc": "너무 빠르지 않게 ..."
     }
   ],
-
   "contacts": [
     {
       "no": "67d416b33f16d20008eab97d",
