@@ -22,10 +22,14 @@
 
 <script setup>
 import axios from 'axios';
-import { ref, reactive } from 'vue';
+import { ref, reactive, onMounted } from 'vue';
+import { useRoute } from 'vue-router'; // 현재 라우팅 정보를 담고 있는 객체
 
-// 입력된 id
-const id = ref('1');
+// 현재 페이지 라우팅 시 id 파라미터에 전달된 값
+const currentRoute = useRoute();
+
+// 입력된 id 또는 /get/:id의 id 파라미터 값
+const id = ref(currentRoute.params.id);
 
 const state = reactive({ todo: {} });
 
@@ -37,4 +41,8 @@ const getTodo = async () => {
   state.todo = response.data;
   // 조회된 후 화면이 리렌더링 될 것.
 };
+
+onMounted(() => {
+  getTodo();
+});
 </script>
