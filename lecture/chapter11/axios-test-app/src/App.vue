@@ -1,47 +1,18 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+  <div>
+    <h2>콘솔을 확인합니다.</h2>
+  </div>
 </template>
+<script setup>
+import axios from 'axios';
 
-<style scoped>
-header {
-  line-height: 1.5;
-}
+const requestAPI = () => {
+  const url = 'http://localhost:3000/todos/1';
+  axios.get(url).then((response) => {
+    console.log('# 응답 객체: ', response);
+  });
+};
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
-</style>
+requestAPI();
+</script>
+<style></style>
