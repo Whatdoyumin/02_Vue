@@ -1,12 +1,6 @@
 {
   "todos": [
     {
-      "id": "1",
-      "todo": "ES6학습",
-      "desc": "설명1",
-      "done": false
-    },
-    {
       "id": "2",
       "todo": "React학습",
       "desc": "설명2",
@@ -23,6 +17,11 @@
       "todo": "야구경기 관람",
       "desc": "설명4",
       "done": false
+    },
+    {
+      "id": "ecf1",
+      "todo": "오늘은 공부하자",
+      "desc": "빅분기 시험이니까"
     }
   ]
 }
