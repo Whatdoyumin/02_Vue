@@ -1,13 +1,34 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import HomeView from '../views/HomeView.vue';
+import HomePage from '../pages/HomePage.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    // 메인 메뉴 구성 정보
     {
-      title: '가전',
-      url: '/electronics',
+      path: '/',
+      name: 'home',
+      component: HomePage,
+    },
+    {
+      path: '/electronics',
+      name: 'electronics',
+      // lazy loading
+      component: () => import('../pages/ElectronicsPage.vue'),
+    },
+    {
+      path: '/jewelery',
+      name: 'jewelery',
+      component: () => import('../pages/JeweleryPage.vue'),
+    },
+    {
+      path: '/mensclothing',
+      name: 'mensclothing',
+      component: () => import('../pages/MensClothingPage.vue'),
+    },
+    {
+      path: '/womenclothing',
+      name: 'womenclothing',
+      component: () => import('../pages/WomensClothingPage.vue'),
     },
   ],
 });
