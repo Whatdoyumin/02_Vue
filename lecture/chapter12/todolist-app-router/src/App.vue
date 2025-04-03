@@ -1,85 +1,58 @@
-<script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+  <div class="container">
+    <Header />
+    <router-view></router-view>
+  </div>
 </template>
+<script setup>
+import Header from './components/Header.vue';
+import { reactive, computed, provide } from 'vue';
 
-<style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
+const states = reactive({
+  todoList: [
+    // closure 기반으로 데이터가 관리됨
+    { id: 1, todo: 'Todo 1', desc: '설명2', done: false },
+    { id: 2, todo: 'Todo 2', desc: '설명2', done: true },
+    { id: 3, todo: 'Todo 3', desc: '설명3', done: false },
+  ],
+});
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
+const addTodo = ({ todo, desc }) => {
+  states.todoList.push({
+    id: new Date().getTime(),
+    todo,
+    desc,
+    done: false,
+  });
+};
 
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
+const updateTodo = (id, { todo, desc }) => {
+  const index = states.todoList.findIndex((todo) => todo.id === id);
+  states.todoList[index] = { ...states.todoList[index], todo, desc, done };
+};
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+const deleteTodo = (id) => {
+  const index = states.todoList.findIndex((todo) => todo.id === id);
+  if (index !== -1) {
+    states.todoList.splice(index, 1); // Array.prototype.filter() 메서드를 사용하여 코드를 줄일 수 있음
   }
+};
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
+const toggleDone = (id) => {
+  const index = states.todoList.findIndex((todo) => todo.id === id);
+  states.todoList[index].done = !states.todoList[index].done;
+};
 
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+provide(
+  'todoList',
+  computed(() => states.todoList)
+); // 읽기 전용
 
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-}
-</style>
+provide('actions', {
+  addTodo,
+  updateTodo,
+  deleteTodo,
+  toggleDone,
+}); // 읽기/쓰기
+</script>
+<style lang=""></style>
