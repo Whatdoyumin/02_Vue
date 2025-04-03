@@ -36,7 +36,7 @@ const state = reactive({ todo: {} });
 const getTodo = async () => {
   // 'api' === 'http:/'
   // ref() == 객체 -> 데이터 접근 시 .value 이용
-  const response = await axios.get(`http://localhost:3000/todos/${id.value}`);
+  const response = await axios.get(`/api/todos/${id.value}`);
 
   state.todo = response.data;
   // 조회된 후 화면이 리렌더링 될 것.

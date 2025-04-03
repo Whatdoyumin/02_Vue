@@ -1,31 +1,10 @@
 {
   "todos": [
     {
-      "id": "1",
-      "todo": "야구장",
-      "desc": "프로야구 경기도 봐야합니다.",
-      "done": false
-    },
-    {
-      "id": "2",
-      "todo": "놀기",
-      "desc": "노는 것도 중요합니다.",
-      "done": false
-    },
-    {
-      "id": "3",
-      "todo": "Vue 학습",
-      "desc": "Vue 학습을 해야 합니다",
-      "done": false
-    },
-    {
       "id": "4",
       "todo": "ES6 공부",
       "desc": "ES6공부를 해야 합니다",
       "done": false
-    },
-    {
-      "id": "db9d"
     },
     {
       "id": "ae59",
@@ -37,18 +16,6 @@
       "id": "3247",
       "todo": "입력된 제목",
       "desc": "입력된 설명",
-      "done": false
-    },
-    {
-      "id": "0ef4",
-      "todo": "전화하기",
-      "desc": "",
-      "done": false
-    },
-    {
-      "id": "33e3",
-      "todo": "기본 문제 풀기ㅇ",
-      "desc": "오늘 제출 안 하면 망함",
       "done": false
     },
     {
@@ -73,6 +40,12 @@
       "id": "a7a1",
       "todo": "맥북사기",
       "desc": "어제 샀음 ㅋ",
+      "done": false
+    },
+    {
+      "id": "cdb5",
+      "todo": "치맥해야지",
+      "desc": "근데 혼자 ㅜㅜ",
       "done": false
     }
   ]

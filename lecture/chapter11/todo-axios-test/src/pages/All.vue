@@ -23,7 +23,7 @@
         <td>{{ todo.todo }}</td>
         <td>{{ todo.desc }}</td>
         <td>
-          <button @click="deleteTodo(todo)">삭제</button>
+          <button @click="deleteTodo(todo.id)">삭제</button>
         </td>
       </tr>
     </tbody>
@@ -48,4 +48,24 @@ const fetchTodoList = async () => {
 };
 
 fetchTodoList();
+
+// 할 일 완료 여부 수정
+const updateTodo = async (todo) => {
+  todo.done = !todo.done; // done 속성 반전 (treu <-> false)
+
+  // 비동기로 할 일 완료 여부 수정
+  const respose = await axios.put(`/api/todos/${todo.id}`, todo);
+
+  console.log(respose.data);
+};
+
+// 비동기로 할 일 삭제
+const deleteTodo = async (todo) => {
+  const response = await axios.delete(`/api/todos/${todo}`);
+
+  console.log('삭제', response.data);
+
+  // 삭제된 할 일을 state.todos에서 찾아 제거
+  statemodor.todos = state.todos.fileter((todo) => todo.id !== id);
+};
 </script>
