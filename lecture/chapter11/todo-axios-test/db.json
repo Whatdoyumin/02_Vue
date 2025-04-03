@@ -68,6 +68,12 @@
       "todo": "밥먹기 추가됐나?",
       "desc": "됐을 듯?",
       "done": false
+    },
+    {
+      "id": "a7a1",
+      "todo": "맥북사기",
+      "desc": "어제 샀음 ㅋ",
+      "done": false
     }
   ]
 }
