@@ -1,3 +1,4 @@
+import { defineStore } from 'pinia';
 import { computed, reactive } from 'vue';
 
 export const useTodoListStore = defineStore('todoList', () => {
